@@ -27,7 +27,7 @@ namespace Cursach
         public string Nameofgoods { get => nameofgoods; set => nameofgoods = value; }
         public double Quantity { get => quantity; set => quantity = value >= 0 ? value : 0; }
         public double Price { get => price; set => price = value >= 0 ? value : 0; }
-        public Implementation() { }
+        public Implementation(){ }
         public Implementation(string nameshop, string obl, string city, string streat, double number, string code, string nameofgoods, double quantity, double price)
         {
             Nameshop = nameshop;

@@ -1,6 +1,6 @@
 ﻿namespace Cursach
 {
-    partial class tabPage5
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.
@@ -170,24 +170,25 @@
             // 
             // spravochnik
             // 
-            this.spravochnik.Location = new System.Drawing.Point(996, 82);
+            this.spravochnik.Location = new System.Drawing.Point(1104, 82);
             this.spravochnik.Name = "spravochnik";
-            this.spravochnik.Size = new System.Drawing.Size(362, 376);
+            this.spravochnik.Size = new System.Drawing.Size(254, 376);
             this.spravochnik.TabIndex = 29;
             this.spravochnik.Text = "";
             // 
             // number
             // 
-            this.number.Location = new System.Drawing.Point(855, 87);
+            this.number.Location = new System.Drawing.Point(1002, 83);
             this.number.Name = "number";
-            this.number.Size = new System.Drawing.Size(100, 30);
+            this.number.Size = new System.Drawing.Size(71, 30);
             this.number.TabIndex = 28;
+            this.number.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Check_input_digit);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label11.Location = new System.Drawing.Point(792, 90);
+            this.label11.Location = new System.Drawing.Point(923, 88);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(57, 25);
             this.label11.TabIndex = 27;
@@ -195,16 +196,16 @@
             // 
             // streat
             // 
-            this.streat.Location = new System.Drawing.Point(670, 85);
+            this.streat.Location = new System.Drawing.Point(750, 82);
             this.streat.Name = "streat";
-            this.streat.Size = new System.Drawing.Size(100, 30);
+            this.streat.Size = new System.Drawing.Size(146, 30);
             this.streat.TabIndex = 26;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label10.Location = new System.Drawing.Point(595, 89);
+            this.label10.Location = new System.Drawing.Point(675, 85);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(69, 25);
             this.label10.TabIndex = 25;
@@ -212,16 +213,16 @@
             // 
             // city
             // 
-            this.city.Location = new System.Drawing.Point(479, 87);
+            this.city.Location = new System.Drawing.Point(495, 83);
             this.city.Name = "city";
-            this.city.Size = new System.Drawing.Size(100, 30);
+            this.city.Size = new System.Drawing.Size(157, 30);
             this.city.TabIndex = 24;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(392, 88);
+            this.label9.Location = new System.Drawing.Point(420, 86);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(69, 25);
             this.label9.TabIndex = 23;
@@ -241,7 +242,7 @@
             // 
             this.obl.Location = new System.Drawing.Point(231, 87);
             this.obl.Name = "obl";
-            this.obl.Size = new System.Drawing.Size(140, 30);
+            this.obl.Size = new System.Drawing.Size(167, 30);
             this.obl.TabIndex = 18;
             this.obl.Wrap = true;
             // 
@@ -299,7 +300,7 @@
             // 
             this.nameshop.Location = new System.Drawing.Point(231, 46);
             this.nameshop.Name = "nameshop";
-            this.nameshop.Size = new System.Drawing.Size(119, 30);
+            this.nameshop.Size = new System.Drawing.Size(167, 30);
             this.nameshop.TabIndex = 7;
             // 
             // label7
@@ -422,9 +423,9 @@
             // 
             // b3
             // 
-            this.b3.Location = new System.Drawing.Point(443, 21);
+            this.b3.Location = new System.Drawing.Point(421, 21);
             this.b3.Name = "b3";
-            this.b3.Size = new System.Drawing.Size(172, 87);
+            this.b3.Size = new System.Drawing.Size(213, 87);
             this.b3.TabIndex = 3;
             this.b3.Text = "Сведения о дислокации магазина, где заданный товар самый дешёвый";
             this.b3.UseVisualStyleBackColor = true;
@@ -432,7 +433,7 @@
             // 
             // b2
             // 
-            this.b2.Location = new System.Drawing.Point(241, 21);
+            this.b2.Location = new System.Drawing.Point(236, 21);
             this.b2.Name = "b2";
             this.b2.Size = new System.Drawing.Size(179, 87);
             this.b2.TabIndex = 2;
@@ -582,14 +583,14 @@
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -600,16 +601,19 @@
             this.helpToolStripMenuItem.Text = "Help";
             this.helpToolStripMenuItem.Click += new System.EventHandler(this.HelpToolStripMenuItem_Click);
             // 
-            // tabPage5
+            // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1792, 690);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "tabPage5";
+            this.MaximizeBox = false;
+            this.Name = "Form1";
             this.Text = "Form1";
+            this.HelpRequested += new System.Windows.Forms.HelpEventHandler(this.TabPage5_HelpRequested);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();

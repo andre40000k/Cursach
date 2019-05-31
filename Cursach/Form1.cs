@@ -9,16 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
-using System.Data;
 using System.Diagnostics;
 
 
 namespace Cursach
 {
-    public partial class tabPage5 : Form
+    public partial class Form1 : Form
     {
         Implementation im;
-        public tabPage5()
+        public Form1()
         {
 
             im = new Implementation();
@@ -36,14 +35,15 @@ namespace Cursach
 
             List<string> oblast = new List<string>
             {
-                "Одесская","Николаевская","Херсонская"
+                "Одесская","Николаевская","Херсонская","Киевская","Сумская","Днепропетровская","Львовская","Закарпатская","Черниговская","Донецкая","Луганская","Виницкая","Запорожская","Кировоградская","Полтавская","Тернопольская","Хмельницкая","Черкаская","Волинская",
+                "Житомерская","Ивано-Франковская","Ровенская","Черкаская","Харковская"
             };
             obl.Items.AddRange(oblast);
         }
         int m = 0, t;
         private void Button1_Click(object sender, EventArgs e)
         {
-            t = 1;
+           
             im.Nameshop = nameshop.Text;
             if (nameshop.Text == "")
             {
@@ -143,10 +143,10 @@ namespace Cursach
             }           
 
             amount.Text = Convert.ToString(im.Amount());
+            t = 1;
         }
         private void Button2_Click(object sender, EventArgs e)
-        {
-           
+        {           
             if (m == 0 && t == 1)
             {
                 Tabl.Rows.Add(nameshop.Text, obl.Text, city.Text, streat.Text, number.Text, nameofgoods.Text, code.Text, quantity.Text, price.Text, amount.Text);
@@ -154,29 +154,31 @@ namespace Cursach
             }
             else
                 spravochnik.Text = "\nДанные не были добавлены в табллицу. Отсуствует либо некоректно введины один или несколько элементов!!!" + "\n";
+            t = 0;
         }
         private void Button3_Click(object sender, EventArgs e)
         {
-            string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите название магагзина:");
+            string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите название товара:");
             for (int i = 0; i < Tabl.RowCount - 1; ++i)
             {
                 Tabl.Rows[i].Visible = (Tabl.Rows[i].Cells[5].Value.ToString() == str1);
             }
-        }
-        double sum = 0;
+        }       
         private void B2_Click(object sender, EventArgs e)
         {
-            string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите название магагзина:");
+            double sum = 0;
+            string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите название товара:");
             for (int i = 0; i < Tabl.RowCount - 1; ++i)
             {
                 Tabl.Rows[i].Visible = (Tabl.Rows[i].Cells[5].Value.ToString() == str1);
+                if(Tabl.Rows[i].Cells[5].Value.ToString() == str1)
                 sum += Convert.ToDouble(Tabl.Rows[i].Cells[9].Value.ToString() == "" ? "0" : Tabl.Rows[i].Cells[9].Value.ToString());
             }
             DialogResult result = MessageBox.Show("Объщая сумма по всем магазинам " + str1 + " = " + Convert.ToString(sum));
         }
         private void B3_Click(object sender, EventArgs e)
         {
-            string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите название магагзина:");
+            string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите название товара:");
             double Min = 0;
             for (int i = 0; i < Tabl.RowCount - 1; ++i)
             {
@@ -189,26 +191,31 @@ namespace Cursach
             }
             for (int i = 0; i < Tabl.RowCount - 1; ++i)
             {
-                if (Min > Convert.ToDouble(Tabl.Rows[i].Cells[8].Value.ToString() == "" ? "0" : Tabl.Rows[i].Cells[8].Value.ToString()))
+                if (Min > Convert.ToDouble(Tabl.Rows[i].Cells[8].Value.ToString() == "" ? "0" : Tabl.Rows[i].Cells[8].Value.ToString()) && (Tabl.Rows[i].Cells[5].Value.ToString() == str1))
                 {
                     Min = Convert.ToDouble(Tabl.Rows[i].Cells[8].Value.ToString() == "" ? "0" : Tabl.Rows[i].Cells[8].Value.ToString());
                 }
             }
             for (int i = 0; i < Tabl.RowCount - 1; ++i)
             {
-                Tabl.Rows[i].Visible = (Min == Convert.ToDouble(Tabl.Rows[i].Cells[8].Value.ToString() == "" ? "0" : Tabl.Rows[i].Cells[8].Value.ToString()));
+                //if (Tabl.Rows[i].Cells[5].Value.ToString() == str1)
+                    Tabl.Rows[i].Visible = (Min == Convert.ToDouble(Tabl.Rows[i].Cells[8].Value.ToString() == "" ? "0" : Tabl.Rows[i].Cells[8].Value.ToString()) && Tabl.Rows[i].Cells[5].Value.ToString() == str1);
             }
         }
         private void B4_Click(object sender, EventArgs e)
         {
             string str1 = Microsoft.VisualBasic.Interaction.InputBox("Введите цену за единицу товара:");
-            for (int i = 0; i < Tabl.RowCount - 1; ++i)
-            {
-                if (str1 == Tabl.Rows[i].Cells[8].Value.ToString())
+            DialogResult result = MessageBox.Show("Вы дествительно хотите безвозвратно удалить данные?", "Отменить", MessageBoxButtons.YesNo);
+            if(result == DialogResult.Yes)
+            {               
+                for (int i = Tabl.RowCount - 2; i > -1; --i)
                 {
-                    Tabl.Rows.RemoveAt(i);
+                    if (str1 == Tabl.Rows[i].Cells[8].Value.ToString())
+                    {
+                        Tabl.Rows.RemoveAt(i);
+                    }
                 }
-            }
+            }            
         }
         private void Button4_Click(object sender, EventArgs e)
         {
@@ -246,8 +253,7 @@ namespace Cursach
                     e.Handled = true;
             }
         }
-
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)        
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Tabl.RowCount != 0)
             {
@@ -257,7 +263,7 @@ namespace Cursach
                 }
             }
             OpenFileDialog opf = new OpenFileDialog();
-            opf.Filter = "Excel (*.XLS)|*.XLS ";
+            opf.Filter = "Excel (*.xls)|*.xls";
 
             if (opf.ShowDialog() == DialogResult.OK)
             {
@@ -314,6 +320,10 @@ namespace Cursach
             spravochnik.Text += "Файл суспешно сохранён в xls.";
             MessageBox.Show("Файл сохранён");            
         }
+        private void TabPage5_HelpRequested(object sender, HelpEventArgs hlpevent)
+        {
+            Process.Start(@"C:\\Users\\Будяну Андрей\\Desktop\\проги\\лабы\\Cursach\\Cursach\\reference.chm");
+        }   
         private void HelpToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start(@"C:\\Users\\Будяну Андрей\\Desktop\\проги\\лабы\\Cursach\\Cursach\\reference.chm");

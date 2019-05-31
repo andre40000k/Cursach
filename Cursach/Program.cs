@@ -14,7 +14,7 @@ namespace Cursach
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new tabPage5());
+            Application.Run(new Form1());
         }
     }
 }
